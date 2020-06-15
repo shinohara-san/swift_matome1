@@ -16,9 +16,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: "CompanyTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CompanyTableViewCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.Extension.gray
+        
         
     }
     
@@ -51,8 +56,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cell = Bundle.main.loadNibNamed("CompanyTableViewCell", owner: self, options: nil)?.first as! CompanyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CompanyTableViewCell", for: indexPath) as! CompanyTableViewCell
+//        let cell = Bundle.main.loadNibNamed("CompanyTableViewCell", owner: self, options: nil)?.first as! CompanyTableViewCell
         
         cell.backgroundColor = UIColor.Extension.gray
         
